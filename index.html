@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="ur" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="World Official V35 — educational cybersecurity verification portal.">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>World Official V35 | Security Verification Portal</title>
+  <!-- Before production: configure a real consent/privacy approach for analytics and add CSP/security headers at the host. -->
+  <style>
+    :root{color-scheme:dark;--bg:#0f172a;--card:#1e293b;--line:#334155;--text:#f8fafc;--muted:#cbd5e1;--blue:#0d6efd;--cyan:#38bdf8;--green:#10b981;--amber:#f59e0b;--red:#f87171}
+    *{box-sizing:border-box} body{margin:0;padding:20px;font-family:system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif;background:var(--bg);color:var(--text);line-height:1.65}
+    .container{max-width:1120px;margin:auto} header{text-align:center;padding:24px 0;border-bottom:1px solid var(--line);margin-bottom:24px} h1{color:var(--cyan);margin:0} h2{font-size:1.35rem} h3{margin-top:0;color:#bfdbfe} .muted{color:var(--muted)}
+    .notice,.panel,.tool-card{border:1px solid var(--line);border-radius:12px;padding:18px;background:var(--card);margin-bottom:20px}.notice{background:#422006;border-color:#b45309;color:#fef3c7}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}.tool-card{margin:0}.tool-card h3{margin-bottom:8px}.tool-card p{margin:0 0 8px}
+    label{display:block;font-weight:650;margin:12px 0 5px} input,select,textarea{width:100%;padding:11px;border-radius:7px;border:1px solid #64748b;background:#0b1220;color:var(--text);font:inherit} input:focus,select:focus,textarea:focus,button:focus-visible{outline:3px solid #7dd3fc;outline-offset:2px}
+    button{width:100%;padding:12px 18px;margin-top:16px;background:var(--blue);border:0;border-radius:7px;color:white;font:inherit;font-weight:700;cursor:pointer}button:disabled{opacity:.6;cursor:wait}.status{margin-top:14px;padding:12px;border-radius:8px;background:#0b1220;border:1px solid var(--line);white-space:pre-wrap}.status[hidden]{display:none}.search{max-width:560px;margin:0 auto 20px;text-align:center}.video-placeholder{padding:24px;border:1px dashed #64748b;border-radius:8px;color:var(--muted)} footer{text-align:center;margin-top:40px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);font-size:.9rem}
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+  </style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>World Official V35</h1>
+    <p class="muted">Security Verification &amp; Cybersecurity Learning Portal</p>
+  </header>
+
+  <section class="notice" aria-labelledby="disclaimer-title">
+    <strong id="disclaimer-title">⚠️ قانونی وضاحت / Legal Notice</strong>
+    <p>یہ پورٹل تعلیمی اور مجاز سیکیورٹی جانچ کے لیے ہے۔ صرف اپنے سسٹم یا واضح اجازت والے سسٹم کو ٹیسٹ کریں۔ یہ صفحہ بذاتِ خود کسی اکاؤنٹ، ویب سائٹ یا ڈیوائس کی سیکیورٹی کی تصدیق نہیں کرتا۔</p>
+    <p lang="en" dir="ltr">This portal is for education and authorized security testing. Test only systems you own or are explicitly authorized to assess. This page alone does not certify any account, website, or device as secure.</p>
+  </section>
+
+  <section class="panel" aria-labelledby="intro-title">
+    <h2 id="intro-title">پورٹل کا تعارف / Portal Introduction</h2>
+    <div class="video-placeholder">ویڈیو شامل کرنے کے لیے اپنی شائع شدہ ویڈیو کا درست YouTube embed URL شامل کریں۔ فی الحال کوئی فرضی ویڈیو لنک استعمال نہیں کیا گیا۔</div>
+  </section>
+
+  <section class="panel" aria-labelledby="form-title">
+    <h2 id="form-title">سیکیورٹی درخواست / Security Request</h2>
+    <p class="muted">براہِ کرم پاس ورڈ، OTP، API secret، مکمل ادائیگی کارڈ یا دوسری حساس معلومات اس فارم میں نہ لکھیں۔</p>
+    <form id="verifyForm">
+      <label for="userName">پورا نام / Full name</label>
+      <input id="userName" name="name" autocomplete="name" maxlength="100" required>
+
+      <label for="userEmail">ای میل / Email</label>
+      <input id="userEmail" name="email" type="email" autocomplete="email" maxlength="254" required>
+
+      <label for="queryType">درخواست کی قسم / Request type</label>
+      <select id="queryType" name="type" required>
+        <option value="verify">سیکیورٹی رہنمائی / Security guidance</option>
+        <option value="report">سیکیورٹی مسئلے کی رپورٹ / Security issue report</option>
+        <option value="tool">ٹول تک رسائی / Tool access request</option>
+      </select>
+
+      <label for="message">تفصیلات / Details</label>
+      <textarea id="message" name="message" rows="4" maxlength="3000" placeholder="مسئلے کی وضاحت کریں؛ خفیہ معلومات شامل نہ کریں۔"></textarea>
+
+      <p class="muted">درخواست صرف تب جمع ہوگی جب آپ کا اصل backend endpoint اور سرور پر CAPTCHA verification درست طور پر کنفیگر ہوں۔</p>
+      <div id="captchaContainer" class="sr-only" aria-hidden="true"></div>
+      <button id="submitBtn" type="submit">درخواست جمع کریں / Submit Request</button>
+      <div id="formStatus" class="status" role="status" aria-live="polite" hidden></div>
+    </form>
+  </section>
+
+  <section class="panel" aria-labelledby="guide-title">
+    <h2 id="guide-title">سیکیورٹی آگاہی / Security Awareness</h2>
+    <div class="video-placeholder">سیکیورٹی گائیڈ کی اصل ویڈیو دستیاب ہونے پر یہاں شامل کریں۔</div>
+  </section>
+
+  <section aria-labelledby="tools-title">
+    <div class="search">
+      <h2 id="tools-title">سیکیورٹی ٹولز / Tools Directory</h2>
+      <label for="toolSearch">ٹول تلاش کریں / Search tools</label>
+      <input id="toolSearch" type="search" placeholder="مثلاً SSL، domain، input validation" autocomplete="off">
+      <p id="searchCount" class="muted" aria-live="polite">4 نمونہ ٹولز</p>
+    </div>
+    <div class="grid" id="toolsGrid">
+      <article class="tool-card" data-search="input validation form input validate"><h3>🛡️ Input Validation</h3><p>فارم ان پٹ کی بنیادی جانچ اور validation کے اصول۔</p><small class="muted">تعلیمی معلومات؛ خودکار vulnerability scan نہیں۔</small></article>
+      <article class="tool-card" data-search="bot protection captcha spam recaptcha"><h3>🔐 Bot Protection</h3><p>CAPTCHA اور spam protection کے بنیادی تصورات۔</p><small class="muted">اصل تحفظ کے لیے backend configuration ضروری ہے۔</small></article>
+      <article class="tool-card" data-search="domain ssl tls certificate website"><h3>🌐 Domain / SSL Guide</h3><p>ڈومین، TLS سرٹیفکیٹ اور HTTPS کی جانچ کے لیے رہنمائی۔</p><small class="muted">یہ کارڈ ابھی خود SSL scan نہیں چلاتا۔</small></article>
+      <article class="tool-card" data-search="firebase database firestore security rules access"><h3>📁 Firebase Rules Guide</h3><p>Firestore Security Rules اور access permissions کے اصول۔</p><small class="muted">کسی live database کو یہاں سے ٹیسٹ نہیں کیا جاتا۔</small></article>
+    </div>
+    <p id="noResults" class="status" hidden>کوئی مماثل ٹول نہیں ملا۔ / No matching tools found.</p>
+  </section>
+
+  <footer><p>© <span id="year"></span> World Official V35. تمام حقوق محفوظ ہیں۔</p><p>اس وقت یہ پورٹل ابتدائی ورژن ہے؛ اسے آزادانہ security certification یا 500+ فعال ٹولز کا دعویٰ نہ سمجھیں۔</p></footer>
+</div>
+<script>
+'use strict';
+
+// PRODUCTION SETUP REQUIRED:
+// Set this to your HTTPS backend endpoint. Do not put private keys or service-account credentials here.
+const REQUEST_API_ENDPOINT = '';
+// CAPTCHA must be rendered with a real site key, and its token must be verified by the backend.
+// A client-side CAPTCHA check alone is not a security boundary.
+
+const form = document.getElementById('verifyForm');
+const submitBtn = document.getElementById('submitBtn');
+const statusBox = document.getElementById('formStatus');
+const searchInput = document.getElementById('toolSearch');
+const cards = Array.from(document.querySelectorAll('.tool-card'));
+const searchCount = document.getElementById('searchCount');
+const noResults = document.getElementById('noResults');
+document.getElementById('year').textContent = String(new Date().getFullYear());
+
+function showStatus(message, kind) {
+  statusBox.hidden = false;
+  statusBox.textContent = message;
+  statusBox.style.borderColor = kind === 'error' ? '#f87171' : kind === 'success' ? '#10b981' : '#64748b';
+}
+
+function searchTools() {
+  const query = searchInput.value.trim().toLocaleLowerCase();
+  let visible = 0;
+  for (const card of cards) {
+    const haystack = (card.innerText + ' ' + (card.dataset.search || '')).toLocaleLowerCase();
+    const match = haystack.includes(query);
+    card.hidden = !match;
+    if (match) visible++;
+  }
+  searchCount.textContent = `${visible} / ${cards.length} نمونہ ٹولز دکھائے جا رہے ہیں`;
+  noResults.hidden = visible !== 0;
+}
+searchInput.addEventListener('input', searchTools);
+
+form.addEventListener('submit', async (event) => {
+  event.preventDefault();
+  if (!form.reportValidity()) return;
+
+  if (!REQUEST_API_ENDPOINT) {
+    showStatus('درخواست ابھی جمع نہیں ہوئی: backend endpoint کنفیگر نہیں ہے۔ یہ پیغام جان بوجھ کر کامیابی کا دعویٰ نہیں کرتا۔', 'error');
+    return;
+  }
+
+  const payload = {
+    name: document.getElementById('userName').value.trim(),
+    email: document.getElementById('userEmail').value.trim(),
+    type: document.getElementById('queryType').value,
+    message: document.getElementById('message').value.trim()
+  };
+  if (payload.name.length > 100 || payload.email.length > 254 || payload.message.length > 3000) {
+    showStatus('درج کردہ معلومات کی حد سے تجاوز ہوا ہے۔ براہِ کرم درست کریں۔', 'error');
+    return;
+  }
+
+  submitBtn.disabled = true;
+  showStatus('درخواست بھیجی جا رہی ہے…', 'pending');
+  try {
+    const response = await fetch(REQUEST_API_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      credentials: 'omit',
+      body: JSON.stringify(payload)
+    });
+    if (!response.ok) throw new Error(`Request failed with status ${response.status}`);
+    showStatus('سرور نے درخواست وصول کر لی ہے۔ یہ پیغام صرف backend کی کامیاب response کے بعد دکھایا گیا ہے۔', 'success');
+    form.reset();
+  } catch (error) {
+    showStatus('درخواست جمع نہیں ہو سکی۔ براہِ کرم بعد میں دوبارہ کوشش کریں یا منتظم سے رابطہ کریں۔', 'error');
+    // Do not log submitted personal information or server response bodies in the browser console.
+  } finally {
+    submitBtn.disabled = false;
+  }
+});
+</script>
+</body>
+</html>
